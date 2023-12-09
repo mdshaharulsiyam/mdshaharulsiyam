@@ -3,95 +3,22 @@
 ## About Me 
 I am a detail oriented MERN developer who excels at creating end to end solutions. I not ensure that applications are functional but also visually appealing. I am passionate, about exploring the possibilities of technology and approach challenges with enthusiasm. Together lets revolutionize the web—one line of code at a time.
 
-## Objective
+### Objective
 I am a MERN Stack Developer who is focused on achieving results, for clients. I specialize in developing web applications that're scalable, efficient and user friendly. My expertise lies in MongoDB, Express.js, React.js and Node.js.
 
-## Vision
+### Vision
 My goal is to be at the forefront of web development by staying adaptable to technologies. I strive to create seamless user experiences that push the boundaries of what can be achieved in the world.
 
+## My skils
 
 
-## Project Features
+## my github activity streak
 
-### 1. User Authentication
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=mdshaharulsiyam&theme=gruvbox&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
 
-- **API:** `/api/users`
-- **Routes:** 
-  - `/api/users/register` - Register a new user
-  - `/api/users/login` - User login
-  - `/api/users/profile` - Get user profile
-  - `/api/users/update-profile` - Update user profile
-  - `/api/users/update-password` - Update user password
-  - `/api/users/logout` - Logout user
-
-### 2. Product Listing and Details
-
-- **API:** `/api/products`
-- **Routes:** 
-  - `/api/products` - Get all products
-  - `/api/products/:id` - Get a specific product by ID
-
-### 3. Shopping Cart
-
-- **API:** `/api/cart`
-- **Routes:** 
-  - `/api/cart` - Get the current user's cart
-  - `/api/cart/add-to-cart/:id` - Add a product to the cart
-  - `/api/cart/remove-from-cart/:id` - Remove a product from the cart
-  - `/api/cart/clear-cart` - Clear the entire cart
-
-### 4. Checkout and Orders
-
-- **API:** `/api/orders`
-- **Routes:** 
-  - `/api/orders` - Get all orders for the current user
-  - `/api/orders/:id` - Get a specific order by ID
-  - `/api/orders/create` - Create a new order
-
-### 5. Admin Functionalities
-
-- **API:** `/api/admin`
-- **Routes:** 
-  - `/api/admin/products` - Get all products (Admin)
-  - `/api/admin/products/:id` - Get a specific product by ID (Admin)
-  - `/api/admin/products/create` - Create a new product (Admin)
-  - `/api/admin/products/:id/update` - Update a product (Admin)
-  - `/api/admin/products/:id/delete` - Delete a product (Admin)
- 
-![EcommercePostman](https://github.com/yash-sahni54321/E-commerce/assets/67969545/76569f61-e14a-4c42-841e-a853118daa68)
-
-
-## Installation
-
-1. Clone the repository: `git clone https://github.com/yash-sahni54321/E-commerce.git`
-2. Change directory to the project: `cd E-commerce`
-3. Install server dependencies: `npm install`
-4. Change directory to the client: `cd frontend`
-5. Install client dependencies: `npm install`
-
-## Usage
-
-1. Start the server: `npm run dev`
-2. Start the client: `cd frontend  npm start`
-
-## Dependencies
-
-- Node.js
-- Express.js
-- React.js
-- MongoDB
-  
-## YouTube Link
-https://www.youtube.com/watch?v=ULQCkPX5zV8
-  
-## Screenshots
-
-Arrange these 6 screen shots in two columns and three rows:
-
-| Profile          | Dashboard         | Details           |
-| :--------------: | :--------------: | :---------------: |
-| ![profile](https://github.com/yash-sahni54321/E-commerce/assets/67969545/faf0571b-0777-418b-b558-2a5349b75fe7) | ![dashboardE](https://github.com/yash-sahni54321/E-commerce/assets/67969545/ed0fcf33-fe80-4bbd-9ced-77f5041a7652) | ![details](https://github.com/yash-sahni54321/E-commerce/assets/67969545/ea64d453-84a8-44e9-8709-2eaf64e31905) |
-
-| Create           | Cart              | Products          |
-| :--------------: | :--------------: | :---------------: |
-| ![Create](https://github.com/yash-sahni54321/E-commerce/assets/67969545/80849629-1149-4927-bbe7-33f1779d1a15) | ![cart](https://github.com/yash-sahni54321/E-commerce/assets/67969545/bc050e2b-69e7-4f94-8267-1985866d8e3a) | ![Products](https://github.com/yash-sahni54321/E-commerce/assets/67969545/bf244e50-05b1-4d0b-96ad-e913193a9930) |
+## my GitHub Profile Summary 
+![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mdshaharulsiyam&theme=gruvbox)
+![](http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mdshaharulsiyam&theme=gruvbox)
+![](http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=mdshaharulsiyam&theme=gruvbox)
+![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=mdshaharulsiyam&theme=gruvbox)
+![](http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=mdshaharulsiyam&theme=gruvbox&utcOffset=8)
