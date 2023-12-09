@@ -7,8 +7,6 @@
   ### Objective
   I am a MERN Stack Developer focused on achieving results for clients. I specialize in developing web applications that are scalable, efficient, and user-friendly. My expertise lies in MongoDB, Express.js, React.js, and Node.js.
 
-  ### Vision
-  My goal is to be at the forefront of web development by staying adaptable to technologies. I strive to create seamless user experiences that push the boundaries of what can be achieved in the world.
 
   ## My Skills
   [![My Skills](https://skillicons.dev/icons?i=react,nodejs,express,mongodb,js,tailwind,html,css)](https://skillicons.dev)
