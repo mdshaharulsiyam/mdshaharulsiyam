@@ -10,7 +10,7 @@ I am a MERN Stack Developer who is focused on achieving results, for clients. I 
 My goal is to be at the forefront of web development by staying adaptable to technologies. I strive to create seamless user experiences that push the boundaries of what can be achieved in the world.
 
 ## My skils
-
+[![My Skills](https://skillicons.dev/icons?i=react,nodejs,express,mongodb,js,tailwind,html,css,)](https://skillicons.dev)
 
 ## my github activity streak
 
@@ -18,6 +18,7 @@ My goal is to be at the forefront of web development by staying adaptable to tec
 
 ## my GitHub Profile Summary 
 ![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mdshaharulsiyam&theme=gruvbox)
+
 ![](http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mdshaharulsiyam&theme=gruvbox)
 ![](http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=mdshaharulsiyam&theme=gruvbox)
 ![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=mdshaharulsiyam&theme=gruvbox)
