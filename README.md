@@ -18,16 +18,16 @@
  ## Recent works
 <div align="left">
 
-   ## project name : [CareerHunt](https://gregarious-mandazi-69cbd9.netlify.app/)
+   ## project : [CareerHunt](https://gregarious-mandazi-69cbd9.netlify.app/)
    ### [Client Side repo link:](https://github.com/mdshaharulsiyam/CareerHunt-client-side?tab=readme-ov-file) https://github.com/mdshaharulsiyam/CareerHunt-client-side?tab=readme-ov-file
    ### details : 
    - TThe website boasts a multifaceted educational ecosystem with distinct dashboards for administrators, teachers, and students. The admin dashboard empowers administrators with oversight and control, allowing them to manage user accounts, courses, and site activities. Teachers leverage their dashboard for efficient course administration, including content creation, assignment uploads, and student interaction. Students, in turn, benefit from a user-friendly dashboard facilitating course enrollment, assignment submission, and progress tracking. Essential features like submitting assignments, receiving feedback, and dedicated admin tools for customization contribute to a seamless and interactive e-learning experience. The platform's cohesive design ensures a tailored approach to education, promoting effective communication and engagement throughout the learning journey
 
-   ## project name : [FooDWave](https://imaginative-ganache-4b307c.netlify.app/)
+   ## project : [FooDWave](https://imaginative-ganache-4b307c.netlify.app/)
    ### [Client Side repo link:](https://github.com/mdshaharulsiyam/FoodWave-clint) https://github.com/mdshaharulsiyam/FoodWave-clint
    ### details : 
    - The web app includes a secure "Add Food" page for logged-in users. Users can add, update, and delete their food items on the protected "Manage Food" page. This page also features a 'Manage' button, redirecting users to a section where they can view and handle specific food requests. Additionally, users can set the delivery status for requested food on this secondary page. The system allows users to add requests on food details pages and view them in the 'My Requested Food' section.
-   ## project name : [Elegance Wedding’s](https://hilarious-longma-dfd9d4.netlify.app/)
+   ## project : [Elegance Wedding’s](https://hilarious-longma-dfd9d4.netlify.app/)
    ### [Client Side repo link:](https://github.com/mdshaharulsiyam/Elegance-Weddings-Clint) https://github.com/mdshaharulsiyam/Elegance-Weddings-Clint
    ### details : 
    - The website secures its "Service Details" route, requiring login for access. Unauthorized attempts redirect to the login page, followed by access upon successful login. A post-login sweet alert enhances user experience.
