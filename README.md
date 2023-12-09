@@ -1,8 +1,15 @@
-![siyam](https://i.ibb.co/Jpb9nm2/Blue-Modern-Photo-Technology-You-Tube-Banner-1.gif)
+![shaharul siyam](https://i.ibb.co/hFMnVPw/Blue-Modern-Photo-Technology-You-Tube-Banner-1.png)
 
-## Project Description
+## About Me 
+I am a detail oriented MERN developer who excels at creating end to end solutions. I not ensure that applications are functional but also visually appealing. I am passionate, about exploring the possibilities of technology and approach challenges with enthusiasm. Together lets revolutionize the web—one line of code at a time.
 
-The project is an E-commerce web application that allows users to browse products, add them to the cart, and proceed to checkout. It also includes features for user authentication, order management, and product administration.
+## Objective
+I am a MERN Stack Developer who is focused on achieving results, for clients. I specialize in developing web applications that're scalable, efficient and user friendly. My expertise lies in MongoDB, Express.js, React.js and Node.js.
+
+## Vision
+My goal is to be at the forefront of web development by staying adaptable to technologies. I strive to create seamless user experiences that push the boundaries of what can be achieved in the world.
+
+
 
 ## Project Features
 
