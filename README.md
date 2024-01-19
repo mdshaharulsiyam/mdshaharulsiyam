@@ -10,7 +10,7 @@
  
 
   ## My Skills
-  [![My Skills](https://skillicons.dev/icons?i=react,nodejs,express,mongodb,js,tailwind,html,css,php,mysql)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=react,nodejs,express,mongodb,js,tailwind,html,css,php,mysql,wordpress)](https://skillicons.dev)
 
   ## My GitHub Activity Streak
   [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=mdshaharulsiyam&theme=gruvbox&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
