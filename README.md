@@ -11,7 +11,7 @@
  <a href='https://www.linkedin.com/in/shaharul-siyam-7495b02a3/'>linkedin : https://www.linkedin.com/in/shaharul-siyam-7495b02a3/</a>
 
   ## My Skills
-  [![My Skills](https://skillicons.dev/icons?i=react,nodejs,express,mongodb,js,tailwind,html,css,php,mysql,wordpress,nextjs)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=react,nextjs,nodejs,express,mongodb,js,ts,tailwind,html,css,php,mysql,wordpress,)](https://skillicons.dev)
 
   ## My GitHub Activity Streak
   [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=mdshaharulsiyam&theme=gruvbox&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
