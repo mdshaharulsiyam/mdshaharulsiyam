@@ -1,6 +1,10 @@
 <div align="center">
-  <img src="https://i.ibb.co/hFMnVPw/Blue-Modern-Photo-Technology-You-Tube-Banner-1.png" alt="Shaharul Siyam">
+  <!-- <img src="https://i.ibb.co/hFMnVPw/Blue-Modern-Photo-Technology-You-Tube-Banner-1.png" alt="Shaharul Siyam"> -->
+   <img src="Blue-Modern-Photo-Technology-You-Tube-Banner-1.svg" alt="Shaharul Siyam">
 <div align="left">
+<img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/9be4d344-6782-461a-b5a6-32a07bf7b34e" width="300" height="120" alt="animated hello">
+
+</br>
 
 # About Me <img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" alt="Fire" width="30" />
 
