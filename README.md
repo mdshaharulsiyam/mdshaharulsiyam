@@ -2,11 +2,13 @@
   <img src="https://i.ibb.co/hFMnVPw/Blue-Modern-Photo-Technology-You-Tube-Banner-1.png" alt="Shaharul Siyam">
 <div align="left">
 
-## About Me
+# About Me <img src="https://user-images.githubusercontent.com/74038190/216122041-518ac897-8d92-4c6b-9b3f-ca01dcaf38ee.png" alt="Fire" width="30" />
 
 I am a detail-oriented MERN developer who excels at creating end-to-end solutions. I ensure that applications are not only functional but also visually appealing. I am passionate about exploring the possibilities of technology and approach challenges with enthusiasm. Let's revolutionize the web—one line of code at a time.
 
-### Objective
+</br>
+
+# Objective <img src="https://user-images.githubusercontent.com/74038190/216122069-5b8169d7-1d8e-4a13-b245-a8e4176c99f8.png" alt="Bullseye" width="30" />
 
 I am a MERN Stack Developer focused on achieving results for clients. I specialize in developing web applications that are scalable, efficient, and user-friendly. My expertise lies in MongoDB, Express.js, React.js, and Node.js.
 
