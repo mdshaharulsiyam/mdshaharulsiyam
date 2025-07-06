@@ -82,4 +82,8 @@ I am a MERN Stack Developer focused on achieving results for clients. I speciali
 ![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=mdshaharulsiyam&theme=gruvbox)
 ![](http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=mdshaharulsiyam&theme=gruvbox&utcOffset=8)
 
+<!-- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mdshaharulsiyam&langs_count=100)](https://github.com/anuraghazra/github-readme-stats) -->
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mdshaharulsiyam&langs_count=10&layout=compact&theme=dark&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
+
 </div>
