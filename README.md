@@ -17,10 +17,17 @@ I am a detail-oriented MERN developer who excels at creating end-to-end solution
 I am a MERN Stack Developer focused on achieving results for clients. I specialize in developing web applications that are scalable, efficient, and user-friendly. My expertise lies in MongoDB, Express.js, React.js, and Node.js.
 
 </div>
+
+<div align="left">
+
+# Skills <img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/3b4607a1-1cc6-41f1-926f-892ae880e7a5" width="40">
+
+</div>
+
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="80" style="margin: 10px;" alt="React.js"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="80" style="margin: 10px;" alt="Node.js"/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" width="80" style="margin: 10px;" alt="Express.js"/>
+  <img src="./1646733543.webp" width="80" style="margin: 10px;" alt="Express.js"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="80" style="margin: 10px;" alt="Next.js"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="80" style="margin: 10px;" alt="MongoDB"/>
   <img src="https://raw.githubusercontent.com/mongodb-js/mongoose/master/docs/images/mongoose5_62x30_transparent.png" width="80" style="margin: 10px;" alt="Mongoose"/>
@@ -43,13 +50,20 @@ I am a MERN Stack Developer focused on achieving results for clients. I speciali
 
 ## SOCIAL
 
-<a href='https://siyam-portfolio.vercel.app/'><img src="https://user-images.githubusercontent.com/74038190/235294012-0a55e343-37ad-4b0f-924f-c8431d9d2483.gif" width="100"></a>
-<img src="https://user-images.githubusercontent.com/74038190/235294015-47144047-25ab-417c-af1b-6746820a20ff.gif" width="100">
-
+<a href='https://www.linkedin.com/in/shaharulsiyam/'><img src="https://user-images.githubusercontent.com/74038190/235294012-0a55e343-37ad-4b0f-924f-c8431d9d2483.gif" width="100"></a>
+<a href='https://siyam-portfolio.vercel.app/'>
+<img src="./world-icon-png-6.png" width="90">
+</a>
+<a href='https://www.facebook.com/mdshaharul.siyam'>
 <img src="https://user-images.githubusercontent.com/74038190/235294010-ec412ef5-e3da-4efa-b1d4-0ab4d4638755.gif" width="100">
+</a>
+
+<!-- <img src="https://user-images.githubusercontent.com/74038190/235294015-47144047-25ab-417c-af1b-6746820a20ff.gif" width="100"> -->
+
+<!--
 <img src="https://user-images.githubusercontent.com/74038190/235294019-40007353-6219-4ec5-b661-b3c35136dd0b.gif" width="100">
 <img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/cc4fe88c-7f7a-41d8-b449-34b7a178c1c6" width="100">
-<img src="https://user-images.githubusercontent.com/74038190/235294007-de441046-823e-4eff-89bf-d4df52858b65.gif" width="100">
+<img src="https://user-images.githubusercontent.com/74038190/235294007-de441046-823e-4eff-89bf-d4df52858b65.gif" width="100"> -->
 <!-- <a href='https://www.linkedin.com/in/shaharul-siyam-7495b02a3/'>linkedin : https://www.linkedin.com/in/shaharul-siyam-7495b02a3/</a> -->
 
 <!-- ## My Skills -->
