@@ -135,6 +135,13 @@ I am Shaharul Siyam, a dedicated **Full Stack Developer** based in Mohakhali, Dh
 
   <br />
 
+  ### 📈 Contribution Activity Graph
+  <p align="center">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=mdshaharulsiyam&theme=tokyo-night&area=true&hide_border=false" alt="Shaharul's Contribution Graph" width="85%" />
+  </p>
+
+  <br />
+
   ### 📈 Overall Stats & Most Used Languages
   <p align="center">
     <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=mdshaharulsiyam&show_icons=true&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true" alt="Shaharul's GitHub Stats" width="48%" />
@@ -142,11 +149,11 @@ I am Shaharul Siyam, a dedicated **Full Stack Developer** based in Mohakhali, Dh
   </p>
 
   <br />
-
-  ### 🏆 GitHub Profile Summary
+  ### 🛠️ Languages & Tools Overview
   <p align="center">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mdshaharulsiyam&theme=tokyonight" alt="Profile Details" width="48%" />
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mdshaharulsiyam&theme=tokyonight" alt="Repos Per Language" width="48%" />
+    <a href="https://skillicons.dev">
+      <img src="https://skillicons.dev/icons?i=react,nextjs,nodejs,express,mongodb,js,ts,redux,tailwind,postgres,prisma,aws,docker,c,cpp,php,git,github,vscode" alt="Skill Icons" />
+    </a>
   </p>
 
 </div>
