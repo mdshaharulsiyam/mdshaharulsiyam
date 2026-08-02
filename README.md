@@ -137,8 +137,16 @@ I am Shaharul Siyam, a dedicated **Full Stack Developer** based in Mohakhali, Dh
 
   ### 📈 Overall Stats & Most Used Languages
   <p align="center">
-    <img src="https://github-readme-stats.vercel.app/api?username=mdshaharulsiyam&show_icons=true&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true" alt="Shaharul's GitHub Stats" width="48%" />
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mdshaharulsiyam&layout=compact&theme=tokyonight&hide_border=false&langs_count=8" alt="Top Languages" width="48%" />
+    <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=mdshaharulsiyam&show_icons=true&theme=tokyonight&hide_border=false&include_all_commits=true&count_private=true" alt="Shaharul's GitHub Stats" width="48%" />
+    <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=mdshaharulsiyam&layout=compact&theme=tokyonight&hide_border=false&langs_count=8" alt="Top Languages" width="48%" />
+  </p>
+
+  <br />
+
+  ### 🏆 GitHub Profile Summary
+  <p align="center">
+    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mdshaharulsiyam&theme=tokyonight" alt="Profile Details" width="48%" />
+    <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mdshaharulsiyam&theme=tokyonight" alt="Repos Per Language" width="48%" />
   </p>
 
 </div>
