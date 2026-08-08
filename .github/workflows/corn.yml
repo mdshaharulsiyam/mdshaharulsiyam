@@ -1,0 +1,34 @@
+name: Keep Alive Scheduler
+
+on:
+  schedule:
+    # Runs every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-sites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping APIs and Frontend Sites
+        run: |
+          # List of your sites
+          SITES=(
+            "https://job-portal-r236.onrender.com"
+            "https://find-work-backend.onrender.com"
+            "https://website-backend2-khtt.onrender.com"
+            "https://website-frontend-wwok.onrender.com"
+            "https://booking-app-backend-udcx.onrender.com"
+            "https://find-work-fronend.vercel.app"
+            "https://job-portal-user-panel.vercel.app"
+            "https://job-portal-admin-wine.vercel.app"
+            "https://job-portal-website-omega.vercel.app"
+            "https://taka-de-backend.vercel.app"
+          )
+
+          # Loop through the list and curl each one
+          for site in "${SITES[@]}"; do
+            echo "Pinging $site..."
+            curl -I -s -o /dev/null -w "%{http_code}" "$site"
+            echo " - Finished."
+          done
