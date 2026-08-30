@@ -4,134 +4,48 @@ import math
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
-def generate_ultimate_binary_banner():
-    banner_w, banner_h = 2240, 528
+def generate_clean_binary_banner():
+    # 2x supersampling for ultra-crisp anti-aliased rendering
+    scale = 2
+    banner_w, banner_h = 2240 * scale, 528 * scale
+    out_w, out_h = 2240, 528
     
-    # Fine grid with good balance of density and readability
-    step_x = 8
-    step_y = 12
-    font_size = 12
+    # 1. Base dark background with very subtle cyber gradient / glow
+    canvas = Image.new("RGBA", (banner_w, banner_h), (6, 10, 19, 255))
     
-    cols = banner_w // step_x
-    rows = banner_h // step_y
+    # Subtle background ambient lighting near the right avatar circle
+    circle_r = int(210 * scale)
+    circle_cx = int((2240 - 210 - 120) * scale)
+    circle_cy = int((528 // 2) * scale)
+    
+    # Ambient radial glow behind the avatar
+    glow_layer = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
+    glow_draw = ImageDraw.Draw(glow_layer)
+    glow_draw.ellipse(
+        [(circle_cx - circle_r - 70 * scale, circle_cy - circle_r - 70 * scale),
+         (circle_cx + circle_r + 70 * scale, circle_cy + circle_r + 70 * scale)],
+        fill=(0, 180, 240, 30)
+    )
+    # Subtle accent glow on the left name area
+    glow_draw.ellipse(
+        [(int(80 * scale), int(60 * scale)),
+         (int(850 * scale), int(350 * scale))],
+        fill=(0, 140, 220, 18)
+    )
+    glow_layer = glow_layer.filter(ImageFilter.GaussianBlur(radius=50 * scale))
+    canvas = Image.alpha_composite(canvas, glow_layer)
+
+    # -------------------------------------------------------------------------
+    # RIGHT SIDE: AVATAR PORTRAIT IN BINARY MATRIX
+    # -------------------------------------------------------------------------
+    step_x = 8 * scale
+    step_y = 12 * scale
+    font_size = 12 * scale
     
     font_mono = ImageFont.truetype("C:\\Windows\\Fonts\\consola.ttf", font_size)
     font_mono_bold = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", font_size)
     
-    # =========================================================================
-    # MASTER DESIGN MAP - Everything rasterized for binary sampling
-    # =========================================================================
-    master_map = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
-    md = ImageDraw.Draw(master_map)
-    
-    f_title = ImageFont.truetype("C:\\Windows\\Fonts\\ariblk.ttf", 72)
-    f_sub = ImageFont.truetype("C:\\Windows\\Fonts\\bahnschrift.ttf", 28)
-    f_tag = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", 16)
-    f_badge = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", 15)
-    f_xs = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", 13)
-
-    # --- Corner brackets (thicker for visibility) ---
-    bp, bl = 16, 44
-    for corners in [
-        [(bp, bp, bp+bl, bp), (bp, bp, bp, bp+bl)],
-        [(banner_w-bp-bl, bp, banner_w-bp, bp), (banner_w-bp, bp, banner_w-bp, bp+bl)],
-        [(bp, banner_h-bp, bp+bl, banner_h-bp), (bp, banner_h-bp-bl, bp, banner_h-bp)],
-        [(banner_w-bp-bl, banner_h-bp, banner_w-bp, banner_h-bp), (banner_w-bp, banner_h-bp-bl, banner_w-bp, banner_h-bp)],
-    ]:
-        for c in corners:
-            md.line([(c[0], c[1]), (c[2], c[3])], fill=(0, 255, 240, 255), width=5)
-
-    # --- Top Status Bar ---
-    md.rectangle([(85, 40), (370, 78)], outline=(0, 250, 255, 255), width=3, fill=(0, 210, 250, 200))
-    md.ellipse([(104, 52), (120, 68)], fill=(0, 255, 180, 255))
-    md.text((132, 48), "SYSTEM.INIT // ONLINE", font=f_badge, fill=(255, 255, 255, 255))
-    md.text((395, 50), "[ LOC: 23.7771°N 90.3994°E | DHAKA, BANGLADESH ]", font=f_tag, fill=(0, 240, 255, 245))
-    md.text((950, 50), "[ 0x7F // UPLINK: ACTIVE ]", font=f_xs, fill=(0, 220, 240, 220))
-
-    # --- MAIN NAME (extra bold, extra large for maximum binary density) ---
-    name_x, name_y = 85, 92
-    # Draw it twice offset for extra boldness
-    md.text((name_x+1, name_y+1), "MD SHAHARUL SIYAM", font=f_title, fill=(200, 255, 255, 255))
-    md.text((name_x, name_y), "MD SHAHARUL SIYAM", font=f_title, fill=(255, 255, 255, 255))
-    
-    # Glowing underline accent bars
-    md.rectangle([(name_x, name_y + 82), (name_x + 740, name_y + 88)], fill=(0, 255, 240, 255))
-    md.rectangle([(name_x + 748, name_y + 82), (name_x + 850, name_y + 88)], fill=(0, 255, 180, 255))
-
-    # --- Subtitle / Role ---
-    md.text((name_x, 192), "FULL-STACK DEVELOPER  •  MERN & CLOUD SPECIALIST", font=f_sub, fill=(0, 250, 235, 255))
-
-    # --- Descriptive Bullets ---
-    desc = [
-        "> Scalable Backend Architectures, Real-Time Systems & Microservices",
-        "> React / Next.js  •  Node.js & Express  •  React Native  •  AWS Cloud",
-        "> Modern UI/UX Engineering, High-Performance Web & Mobile Solutions"
-    ]
-    for i, line in enumerate(desc):
-        md.text((name_x, 240 + i * 28), line, font=f_tag, fill=(210, 248, 255, 250))
-
-    # --- Tech Badges (drawn as filled rectangles with bold text) ---
-    badges = ["REACT", "NEXT.JS", "NODE.JS", "EXPRESS", "MONGODB", "REACT NATIVE", "AWS", "DOCKER", "TYPESCRIPT", "TAILWIND", "GRAPHQL"]
-    bx, by = 85, 340
-    cur_x, cur_y = bx, by
-    md.text((bx, by - 24), "CORE_COMPETENCIES // TECH_STACK:", font=f_xs, fill=(0, 225, 245, 240))
-    
-    for badge in badges:
-        bbox = f_badge.getbbox(badge)
-        bw = bbox[2] - bbox[0] + 28
-        bh = 32
-        if cur_x + bw > 1480:
-            cur_x = bx
-            cur_y += 40
-        md.rectangle([(cur_x, cur_y), (cur_x + bw, cur_y + bh)], outline=(0, 250, 255, 255), width=3, fill=(0, 210, 245, 200))
-        md.text((cur_x + 14, cur_y + 6), badge, font=f_badge, fill=(255, 255, 255, 255))
-        cur_x += bw + 14
-
-    # --- Terminal Prompt ---
-    term_y = 455
-    md.rectangle([(85, term_y - 14), (1500, term_y - 12)], fill=(0, 200, 230, 180))
-    md.text((85, term_y), "visitor@siyam-terminal:~$", font=f_tag, fill=(0, 255, 180, 255))
-    md.text((370, term_y), "git commit -m 'Building the future with scalable code' _", font=f_tag, fill=(240, 252, 255, 250))
-
-    # =========================================================================
-    # CIRCLE FRAME (with orbital binary ring and ticks)
-    # =========================================================================
-    circle_r = 210
-    circle_cx = banner_w - circle_r - 115
-    circle_cy = banner_h // 2
-    
-    # Main circle ring (thick for strong binary definition)
-    for offset in range(-2, 3):
-        md.ellipse([(circle_cx-circle_r+offset, circle_cy-circle_r+offset),
-                     (circle_cx+circle_r-offset, circle_cy+circle_r-offset)],
-                    outline=(0, 255, 245, 255), width=2)
-    
-    # Outer orbit ring
-    r_out = circle_r + 16
-    md.ellipse([(circle_cx-r_out, circle_cy-r_out), (circle_cx+r_out, circle_cy+r_out)],
-               outline=(0, 200, 235, 220), width=2)
-    
-    # Orbital ticks
-    for i in range(60):
-        angle = 2 * math.pi * i / 60
-        tick_len = 14 if i % 5 == 0 else 8
-        tx1 = circle_cx + (circle_r + 16) * math.cos(angle)
-        ty1 = circle_cy + (circle_r + 16) * math.sin(angle)
-        tx2 = circle_cx + (circle_r + 16 + tick_len) * math.cos(angle)
-        ty2 = circle_cy + (circle_r + 16 + tick_len) * math.sin(angle)
-        w = 3 if i % 5 == 0 else 2
-        md.line([(tx1, ty1), (tx2, ty2)], fill=(0, 255, 210, 255), width=w)
-
-    # Circle top/bottom cyber labels
-    md.rectangle([(circle_cx-100, circle_cy-circle_r-20), (circle_cx+100, circle_cy-circle_r+4)], fill=(0, 240, 255, 255))
-    md.text((circle_cx-86, circle_cy-circle_r-17), "[ 01001101 01000100 ]", font=f_xs, fill=(0, 8, 16, 255))
-    
-    md.rectangle([(circle_cx-82, circle_cy+circle_r-4), (circle_cx+82, circle_cy+circle_r+20)], fill=(0, 255, 190, 255))
-    md.text((circle_cx-70, circle_cy+circle_r-1), "IDENTITY: VERIFIED", font=f_xs, fill=(0, 8, 16, 255))
-
-    # =========================================================================
-    # AVATAR PORTRAIT PROCESSING
-    # =========================================================================
+    # Process avatar image
     avatar_img = Image.open("avatar.png").convert("RGB")
     arr = np.array(avatar_img, dtype=np.float32)
     rc, gc, bc = arr[:,:,0], arr[:,:,1], arr[:,:,2]
@@ -150,7 +64,6 @@ def generate_ultimate_binary_banner():
     gray = 0.299 * rc + 0.587 * gc + 0.114 * bc
     pg = Image.fromarray(gray.astype(np.uint8))
     gray_np = np.array(ImageEnhance.Contrast(pg).enhance(1.9), dtype=np.float32) / 255.0
-    
     edge_np = np.array(pg.filter(ImageFilter.FIND_EDGES).filter(ImageFilter.GaussianBlur(radius=0.4)), dtype=np.float32) / 255.0
 
     fbs = int(circle_r * 2.2)
@@ -161,48 +74,39 @@ def generate_ultimate_binary_banner():
     s_dark = np.array(Image.fromarray((dark*255).astype(np.uint8)).resize((fbs,fbs), Image.Resampling.BILINEAR), dtype=np.float32) / 255.0
 
     ftlx = circle_cx - fbs // 2
-    ftly = circle_cy - fbs // 2 + 15
+    ftly = circle_cy - fbs // 2 + int(15 * scale)
 
-    master_np = np.array(master_map, dtype=np.float32)
-
-    # =========================================================================
-    # RENDER: 100% PURE BINARY GRID — EVERY PIXEL IS A 0 OR 1
-    # =========================================================================
-    canvas = Image.new("RGBA", (banner_w, banner_h), (2, 4, 8, 255))
-    tl = Image.new("RGBA", (banner_w, banner_h), (0,0,0,0))
-    td = ImageDraw.Draw(tl)
-    gl = Image.new("RGBA", (banner_w, banner_h), (0,0,0,0))
-    gd = ImageDraw.Draw(gl)
+    # Render binary inside circle
+    binary_layer = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
+    b_draw = ImageDraw.Draw(binary_layer)
+    
+    bloom_layer = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
+    bloom_draw = ImageDraw.Draw(bloom_layer)
 
     random.seed(31337)
     
-    # Reduce visual noise: disable rain and scanlines
-    col_active = [False for _ in range(cols)]  # No rain columns
-    row_band = [0.0 for _ in range(rows)]
-
-    for ri in range(rows):
-        y = ri * step_y
-        rb = row_band[ri]
-        
-        for ci in range(cols):
-            x = ci * step_x
+    # Calculate bounding box for the circle grid
+    min_x = circle_cx - circle_r - 20 * scale
+    max_x = circle_cx + circle_r + 20 * scale
+    min_y = circle_cy - circle_r - 20 * scale
+    max_y = circle_cy + circle_r + 20 * scale
+    
+    for y in range(min_y, max_y, step_y):
+        for x in range(min_x, max_x, step_x):
             char = random.choice(['0', '1'])
-            
-            sx = min(banner_w - 1, x + step_x // 2)
-            sy = min(banner_h - 1, y + step_y // 2)
+            sx = x + step_x // 2
+            sy = y + step_y // 2
             
             dx = sx - circle_cx
             dy = sy - circle_cy
             dist = math.sqrt(dx*dx + dy*dy)
-            inside_circle = dist <= circle_r
             
-            if inside_circle:
-                # AVATAR PORTRAIT in binary
+            if dist <= circle_r:
                 ix = sx - ftlx
                 iy = sy - ftly
                 in_face = (0 <= ix < fbs) and (0 <= iy < fbs)
                 mv = s_mask[iy, ix] if in_face else 0.0
-                ev = max(0.0, min(1.0, (circle_r - dist) / 8.0))
+                ev = max(0.0, min(1.0, (circle_r - dist) / (8.0 * scale)))
                 
                 if in_face and mv > 0.18:
                     is_skin = s_skin[iy, ix] > 0.25
@@ -213,60 +117,220 @@ def generate_ultimate_binary_banner():
                     if is_skin:
                         lum = (gv * 0.72 + edv * 0.4) * ev
                         if lum > 0.50:
-                            td.text((x,y), char, font=font_mono_bold, fill=(255,255,255,255))
-                            gd.text((x,y), char, font=font_mono_bold, fill=(0,255,240,255))
+                            b_draw.text((x,y), char, font=font_mono_bold, fill=(255,255,255,255))
+                            bloom_draw.text((x,y), char, font=font_mono_bold, fill=(0,255,240,255))
                         elif lum > 0.30:
-                            td.text((x,y), char, font=font_mono, fill=(15,248,228,245))
-                            gd.text((x,y), char, font=font_mono, fill=(0,218,218,175))
+                            b_draw.text((x,y), char, font=font_mono, fill=(15,248,228,245))
+                            bloom_draw.text((x,y), char, font=font_mono, fill=(0,218,218,175))
                         elif lum > 0.16:
-                            td.text((x,y), char, font=font_mono, fill=(0,198,188,205))
-                            gd.text((x,y), char, font=font_mono, fill=(0,145,162,85))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,198,188,205))
+                            bloom_draw.text((x,y), char, font=font_mono, fill=(0,145,162,85))
                         else:
-                            td.text((x,y), char, font=font_mono, fill=(0,148,158,185))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,148,158,185))
                     elif is_dark:
                         if edv > 0.15:
-                            td.text((x,y), char, font=font_mono, fill=(0,192,188,215))
-                            gd.text((x,y), char, font=font_mono, fill=(0,142,162,95))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,192,188,215))
+                            bloom_draw.text((x,y), char, font=font_mono, fill=(0,142,162,95))
                         elif mv > 0.45:
-                            td.text((x,y), char, font=font_mono, fill=(0,122,138,165))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,122,138,165))
                         else:
-                            td.text((x,y), char, font=font_mono, fill=(0,78,95,115))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,78,95,115))
                     else:
-                        # Simplified avatar rendering based on grayscale only
                         gray_val = s_gray[iy, ix]
                         if gray_val > 0.5:
-                            td.text((x,y), char, font=font_mono_bold, fill=(255,255,255,255))
+                            b_draw.text((x,y), char, font=font_mono_bold, fill=(255,255,255,255))
                         else:
-                            td.text((x,y), char, font=font_mono, fill=(0,200,200,255))
+                            b_draw.text((x,y), char, font=font_mono, fill=(0,200,200,255))
                 else:
-                    # Circle interior simple background
-                    td.text((x,y), char, font=font_mono, fill=(0,120,150,255))
-            else:
-                # OUTSIDE CIRCLE — Simplified rendering from master map only
-                px = master_np[sy, sx]
-                pr, pg2, pb, pa = px[0], px[1], px[2], px[3]
-                if pa > 30:
-                    lum = (0.299*pr + 0.587*pg2 + 0.114*pb) / 255.0
-                    if lum > 0.5:
-                        td.text((x,y), char, font=font_mono_bold, fill=(255,255,255,255))
-                    else:
-                        td.text((x,y), char, font=font_mono, fill=(0,140,180,255))
+                    # Inside circle background subtle binary
+                    b_draw.text((x,y), char, font=font_mono, fill=(0,110,140,160))
 
-    # Multi-stage Neon Gaussian Bloom
-    g1 = gl.filter(ImageFilter.GaussianBlur(radius=1.5))
-    g2 = gl.filter(ImageFilter.GaussianBlur(radius=4.0))
-    g3 = gl.filter(ImageFilter.GaussianBlur(radius=10.0))
-    g4 = gl.filter(ImageFilter.GaussianBlur(radius=18.0))  # Extra wide bloom
+    # Cyber rings and ticks around avatar
+    orbit_layer = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
+    o_draw = ImageDraw.Draw(orbit_layer)
+    
+    # Outer rings
+    for offset in range(-2 * scale, 3 * scale, scale):
+        o_draw.ellipse(
+            [(circle_cx - circle_r + offset, circle_cy - circle_r + offset),
+             (circle_cx + circle_r - offset, circle_cy + circle_r - offset)],
+            outline=(0, 240, 255, 255), width=2 * scale
+        )
+    
+    r_out = circle_r + int(16 * scale)
+    o_draw.ellipse(
+        [(circle_cx - r_out, circle_cy - r_out), (circle_cx + r_out, circle_cy + r_out)],
+        outline=(0, 180, 230, 200), width=2 * scale
+    )
+    
+    # Orbital ticks
+    for i in range(60):
+        angle = 2 * math.pi * i / 60
+        tick_len = int(14 * scale if i % 5 == 0 else 8 * scale)
+        tx1 = circle_cx + (circle_r + int(16 * scale)) * math.cos(angle)
+        ty1 = circle_cy + (circle_r + int(16 * scale)) * math.sin(angle)
+        tx2 = circle_cx + (circle_r + int(16 * scale) + tick_len) * math.cos(angle)
+        ty2 = circle_cy + (circle_r + int(16 * scale) + tick_len) * math.sin(angle)
+        w = 3 * scale if i % 5 == 0 else 2 * scale
+        o_draw.line([(tx1, ty1), (tx2, ty2)], fill=(0, 255, 220, 255), width=w)
+    
+    # Circle cyber pill tags
+    f_badge_xs = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", int(13 * scale))
+    
+    o_draw.rounded_rectangle(
+        [(circle_cx - 95 * scale, circle_cy - circle_r - 22 * scale),
+         (circle_cx + 95 * scale, circle_cy - circle_r + 6 * scale)],
+        radius=4 * scale, fill=(0, 240, 255, 255)
+    )
+    o_draw.text((circle_cx - 82 * scale, circle_cy - circle_r - 18 * scale), "[ 01001101 01000100 ]", font=f_badge_xs, fill=(5, 12, 24, 255))
+    
+    o_draw.rounded_rectangle(
+        [(circle_cx - 85 * scale, circle_cy + circle_r - 6 * scale),
+         (circle_cx + 85 * scale, circle_cy + circle_r + 22 * scale)],
+        radius=4 * scale, fill=(0, 255, 180, 255)
+    )
+    o_draw.text((circle_cx - 72 * scale, circle_cy + circle_r - 3 * scale), "IDENTITY: VERIFIED", font=f_badge_xs, fill=(5, 12, 24, 255))
 
-    # Composite
-    final = Image.alpha_composite(canvas, g4)
-    final = Image.alpha_composite(final, g3)
-    final = Image.alpha_composite(final, g2)
-    final = Image.alpha_composite(final, g1)
-    final = Image.alpha_composite(final, tl)
+    # Apply neon bloom for the right side
+    g1 = bloom_layer.filter(ImageFilter.GaussianBlur(radius=2 * scale))
+    g2 = bloom_layer.filter(ImageFilter.GaussianBlur(radius=6 * scale))
+    g3 = bloom_layer.filter(ImageFilter.GaussianBlur(radius=14 * scale))
+    
+    canvas = Image.alpha_composite(canvas, g3)
+    canvas = Image.alpha_composite(canvas, g2)
+    canvas = Image.alpha_composite(canvas, g1)
+    canvas = Image.alpha_composite(canvas, binary_layer)
+    canvas = Image.alpha_composite(canvas, orbit_layer)
 
-    final.save("binary-face-banner.png", "PNG", quality=95)
-    print("Ultimate Enhanced Binary Matrix Banner saved!")
+    # -------------------------------------------------------------------------
+    # LEFT SIDE: CLEAN, CRISP, MODERN TYPOGRAPHY & DESIGNATION
+    # -------------------------------------------------------------------------
+    left_layer = Image.new("RGBA", (banner_w, banner_h), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(left_layer)
+
+    # Fonts with clean scaling
+    f_name = ImageFont.truetype("C:\\Windows\\Fonts\\segoeuib.ttf", int(72 * scale))
+    f_role = ImageFont.truetype("C:\\Windows\\Fonts\\bahnschrift.ttf", int(30 * scale))
+    f_tagline = ImageFont.truetype("C:\\Windows\\Fonts\\segoeui.ttf", int(19 * scale))
+    f_pill = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", int(14 * scale))
+    f_badge_font = ImageFont.truetype("C:\\Windows\\Fonts\\segoeuib.ttf", int(14 * scale))
+    f_section_title = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", int(13 * scale))
+    f_meta = ImageFont.truetype("C:\\Windows\\Fonts\\consolab.ttf", int(14 * scale))
+
+    start_x = int(105 * scale)
+    
+    # 1. Status Pill
+    badge_y = int(48 * scale)
+    badge_w = int(245 * scale)
+    badge_h = int(32 * scale)
+    
+    ld.rounded_rectangle(
+        [(start_x, badge_y), (start_x + badge_w, badge_y + badge_h)],
+        radius=int(16 * scale),
+        fill=(0, 240, 255, 25),
+        outline=(0, 240, 255, 130),
+        width=int(1.5 * scale)
+    )
+    
+    dot_r = int(5 * scale)
+    dot_cx = start_x + int(18 * scale)
+    dot_cy = badge_y + badge_h // 2
+    ld.ellipse([(dot_cx - dot_r, dot_cy - dot_r), (dot_cx + dot_r, dot_cy + dot_r)], fill=(0, 255, 170, 255))
+    ld.text((start_x + int(34 * scale), badge_y + int(6 * scale)), "FULL STACK DEVELOPER", font=f_pill, fill=(0, 240, 255, 255))
+    
+    ld.text((start_x + badge_w + int(24 * scale), badge_y + int(7 * scale)), "// DHAKA, BANGLADESH  •  OPEN TO OPPORTUNITIES", font=f_meta, fill=(135, 180, 205, 220))
+
+    # 2. Main Name - Extra crisp and bold
+    name_y = int(98 * scale)
+    ld.text((start_x, name_y), "MD SHAHARUL SIYAM", font=f_name, fill=(255, 255, 255, 255))
+    
+    # 3. Glowing Accent Line
+    line_y = name_y + int(94 * scale)
+    line_w1 = int(620 * scale)
+    line_w2 = int(140 * scale)
+    line_h = int(4.5 * scale)
+    
+    # Cyan gradient bar
+    ld.rounded_rectangle([(start_x, line_y), (start_x + line_w1, line_y + line_h)], radius=int(2*scale), fill=(0, 230, 255, 255))
+    # Emerald accent
+    ld.rounded_rectangle([(start_x + line_w1 + int(12*scale), line_y), (start_x + line_w1 + int(12*scale) + line_w2, line_y + line_h)], radius=int(2*scale), fill=(0, 255, 180, 255))
+    # Tech dot
+    ld.ellipse([(start_x + line_w1 + line_w2 + int(26*scale), line_y - int(1*scale)), 
+                (start_x + line_w1 + line_w2 + int(33*scale), line_y + line_h + int(1*scale))], fill=(0, 240, 255, 255))
+
+    # 4. Designation / Role Title
+    role_y = line_y + int(20 * scale)
+    ld.text((start_x, role_y), "Full Stack Developer  |  React & Node.js Expert", font=f_role, fill=(0, 240, 255, 255))
+
+    # 5. Clean Feature Highlights
+    desc_y = role_y + int(50 * scale)
+    bullet_items = [
+        "Delivering high-quality, full-stack solutions with clean, maintainable code.",
+        "Experienced in designing efficient APIs, optimizing frontend performance, and leveraging AWS infrastructure."
+    ]
+    for idx, text in enumerate(bullet_items):
+        by = desc_y + idx * int(28 * scale)
+        # Custom sleek circular bullet
+        b_dot_r = int(3.5 * scale)
+        b_dot_cy = by + int(12 * scale)
+        ld.ellipse([(start_x, b_dot_cy - b_dot_r), (start_x + b_dot_r * 2, b_dot_cy + b_dot_r)], fill=(0, 255, 180, 255))
+        ld.text((start_x + int(18 * scale), by), text, font=f_tagline, fill=(205, 228, 245, 245))
+
+    # 6. Tech Badges / Stack Pills
+    skills_start_y = desc_y + int(68 * scale)
+    curr_x = start_x
+    curr_y = skills_start_y
+    
+    ld.text((curr_x, curr_y), "CORE TECH STACK:", font=f_section_title, fill=(110, 175, 205, 230))
+    curr_y += int(24 * scale)
+    
+    skills = [
+        "REACT", "NEXT.JS", "NODE.JS", "EXPRESS", "MONGODB", 
+        "REACT NATIVE", "AWS", "DOCKER", "TYPESCRIPT", "TAILWIND CSS"
+    ]
+    
+    badge_height = int(30 * scale)
+    
+    for skill in skills:
+        bbox = f_badge_font.getbbox(skill)
+        tw = bbox[2] - bbox[0]
+        bw = tw + int(24 * scale)
+        
+        # Sleek dark pill with bright cyan border
+        ld.rounded_rectangle(
+            [(curr_x, curr_y), (curr_x + bw, curr_y + badge_height)],
+            radius=int(6 * scale),
+            fill=(10, 22, 38, 235),
+            outline=(0, 200, 240, 160),
+            width=int(1.5 * scale)
+        )
+        ld.text((curr_x + int(12 * scale), curr_y + int(6 * scale)), skill, font=f_badge_font, fill=(235, 250, 255, 255))
+        
+        curr_x += bw + int(10 * scale)
+
+    # 7. Subtle Corner Brackets for Clean Modern Tech Aesthetic
+    cb_pad = int(22 * scale)
+    cb_len = int(38 * scale)
+    cb_w = int(2.5 * scale)
+    cb_col = (0, 210, 240, 120)
+    
+    corners = [
+        # Top-left
+        [(cb_pad, cb_pad, cb_pad + cb_len, cb_pad), (cb_pad, cb_pad, cb_pad, cb_pad + cb_len)],
+        # Bottom-left
+        [(cb_pad, banner_h - cb_pad, cb_pad + cb_len, banner_h - cb_pad), (cb_pad, banner_h - cb_pad - cb_len, cb_pad, banner_h - cb_pad)],
+    ]
+    for corner in corners:
+        for line in corner:
+            ld.line([(line[0], line[1]), (line[2], line[3])], fill=cb_col, width=cb_w)
+
+    # Composite layers
+    canvas = Image.alpha_composite(canvas, left_layer)
+
+    # Downsample with Lanczos for crystal-clear antialiasing
+    final_banner = canvas.resize((out_w, out_h), Image.Resampling.LANCZOS)
+    final_banner.save("binary-face-banner.png", "PNG", quality=95)
+    print("Clean, modern banner successfully generated at binary-face-banner.png!")
 
 if __name__ == "__main__":
-    generate_ultimate_binary_banner()
+    generate_clean_binary_banner()
